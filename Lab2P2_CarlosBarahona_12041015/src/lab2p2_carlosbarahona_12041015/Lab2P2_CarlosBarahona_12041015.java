@@ -50,6 +50,8 @@ public class Lab2P2_CarlosBarahona_12041015 {
                             nombre = s.next();
                         }
                     }
+                  ArrayList resultados=new ArrayList();
+                  jugadores.add(new Jugadores(nombre, resultados, 0));
                 }
             }
         }
