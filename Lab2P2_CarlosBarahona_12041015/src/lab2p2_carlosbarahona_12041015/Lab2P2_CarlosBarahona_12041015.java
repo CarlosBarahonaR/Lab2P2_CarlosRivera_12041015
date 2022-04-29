@@ -5,6 +5,10 @@
  */
 package lab2p2_carlosbarahona_12041015;
 
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
 /**
  *
  * @author Admin
@@ -16,6 +20,10 @@ public class Lab2P2_CarlosBarahona_12041015 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Scanner s = new Scanner(System.in);
+        Random r = new Random();
+        ArrayList<Jugadores> jugadores = new ArrayList();
     }
     
 }
