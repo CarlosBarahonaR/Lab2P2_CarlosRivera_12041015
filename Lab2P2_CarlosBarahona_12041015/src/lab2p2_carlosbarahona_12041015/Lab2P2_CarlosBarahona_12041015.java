@@ -37,8 +37,8 @@ public class Lab2P2_CarlosBarahona_12041015 {
             switch (opcion) {
                 case 1: {
                     System.out.println("Ingrese el nombre del usuario");
-                    String nombre=s.next();
-                  for (int x = 0; x < jugadores.size(); x++) {
+                    String nombre = s.next();
+                    for (int x = 0; x < jugadores.size(); x++) {
                         String verificicarN = "";
 
                         if (jugadores.get(x) instanceof Jugadores) {
@@ -50,10 +50,33 @@ public class Lab2P2_CarlosBarahona_12041015 {
                             nombre = s.next();
                         }
                     }
-                  ArrayList resultados=new ArrayList();
-                  jugadores.add(new Jugadores(nombre, resultados, 0));
+                    ArrayList resultados = new ArrayList();
+                    jugadores.add(new Jugadores(nombre, resultados, 0));
+                    break;
+                }
+                case 2: {
+                    System.out.println("Ingrese la posición del jugador que desea ver");
+                    int posicion = s.nextInt();
+                    System.out.println(jugadores.get(posicion));
+                    break;
+                }
+                case 3: {
+                    imprimirArreglo(jugadores, 0);
+                    break;
+                }
+                case 4: {
+                    break;
                 }
             }
+        }
+    }
+
+    public static void imprimirArreglo(ArrayList jugadores, int posicion) {
+
+        if (posicion != jugadores.size()) {
+            System.out.print("Posicion " + posicion + ")");
+            System.out.println(jugadores.get(posicion));
+            imprimirArreglo(jugadores, posicion + 1);
         }
     }
 
