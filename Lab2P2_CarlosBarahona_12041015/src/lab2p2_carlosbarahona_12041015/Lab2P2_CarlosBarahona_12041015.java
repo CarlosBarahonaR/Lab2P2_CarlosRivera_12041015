@@ -70,6 +70,9 @@ public class Lab2P2_CarlosBarahona_12041015 {
                         break;
                     }
                     case 4: {
+                        for (int i = 0; i < jugadores.size(); i++) {
+                            jugadores.get(i).getResultados().clear();
+                        }
 
                         String numeroSecreto = "";
                         for (int i = 0; i < 4; i++) {
@@ -77,15 +80,16 @@ public class Lab2P2_CarlosBarahona_12041015 {
                             String y = Integer.toString(x);
                             numeroSecreto += y;
                         }
-                        for (int i = 0; i < jugadores.size(); i++) {
-                            int intentos = 0;
-                            while (intentos != 8) {
+                        for (int u = 0; u < 8; u++) {
+                            System.out.println("Intento: "+u);
+                            for (int i = 0; i < jugadores.size(); i++) {
+
                                 String salida = "";
-                                System.out.println(numeroSecreto);
+
                                 System.out.println(jugadores.get(i).getUsuario() + " ingrese 4 digitos para encontrar el numero");
 
                                 String adivinar = s.next();
-                                System.out.println(adivinar);
+                                jugadores.get(i).getResultados().add(adivinar);
                                 for (int j = 0; j < adivinar.length(); j++) {
                                     String car = Character.toString(adivinar.charAt(j));
 
@@ -136,15 +140,16 @@ public class Lab2P2_CarlosBarahona_12041015 {
                                     System.out.println("Ganó: " + jugadores.get(i).getUsuario());
                                     jugadores.get(i).setVictorias(+1);
                                     ganar = true;
-                                    intentos = 8;
+
                                     break;
                                 }
-                                intentos += 1;
+
                             }
                         }
-
-                        break;
+                        ganar=true;
                     }
+
+                    break;
                 }
             }
         }
