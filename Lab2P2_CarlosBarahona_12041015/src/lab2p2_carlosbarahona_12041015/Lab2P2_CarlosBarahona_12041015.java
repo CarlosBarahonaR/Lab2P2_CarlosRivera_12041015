@@ -65,6 +65,7 @@ public class Lab2P2_CarlosBarahona_12041015 {
                     break;
                 }
                 case 4: {
+                    System.out.println("Hola");
                     break;
                 }
             }
