@@ -34,39 +34,117 @@ public class Lab2P2_CarlosBarahona_12041015 {
                     + "3) Listar Jugadores\n"
                     + "4) Jugar");
             opcion = s.nextInt();
-            switch (opcion) {
-                case 1: {
-                    System.out.println("Ingrese el nombre del usuario");
-                    String nombre = s.next();
-                    for (int x = 0; x < jugadores.size(); x++) {
-                        String verificicarN = "";
+            boolean ganar = false;
+            while (true != ganar) {
+                switch (opcion) {
+                    case 1: {
+                        System.out.println("Ingrese el nombre del usuario");
+                        String nombre = s.next();
+                        for (int x = 0; x < jugadores.size(); x++) {
+                            String verificicarN = "";
 
-                        if (jugadores.get(x) instanceof Jugadores) {
-                            verificicarN = ((Jugadores) jugadores.get(x)).getUsuario();
-                        }
+                            if (jugadores.get(x) instanceof Jugadores) {
+                                verificicarN = ((Jugadores) jugadores.get(x)).getUsuario();
+                            }
 
-                        while (nombre.equals(verificicarN)) {
-                            System.out.println("Ingrese un nombre de usuario que no este tomado");
-                            nombre = s.next();
+                            while (nombre.equals(verificicarN)) {
+                                System.out.println("Ingrese un nombre de usuario que no este tomado");
+                                nombre = s.next();
+                            }
                         }
+                        ArrayList resultados = new ArrayList();
+                        jugadores.add(new Jugadores(nombre, resultados, 0));
+                        ganar = true;
+                        break;
                     }
-                    ArrayList resultados = new ArrayList();
-                    jugadores.add(new Jugadores(nombre, resultados, 0));
-                    break;
-                }
-                case 2: {
-                    System.out.println("Ingrese la posición del jugador que desea ver");
-                    int posicion = s.nextInt();
-                    System.out.println(jugadores.get(posicion));
-                    break;
-                }
-                case 3: {
-                    imprimirArreglo(jugadores, 0);
-                    break;
-                }
-                case 4: {
-                    System.out.println("Hola");
-                    break;
+                    case 2: {
+                        System.out.println("Ingrese la posición del jugador que desea ver");
+                        int posicion = s.nextInt();
+                        System.out.println(jugadores.get(posicion));
+                        ganar = true;
+                        break;
+                    }
+                    case 3: {
+                        imprimirArreglo(jugadores, 0);
+                        ganar = true;
+                        break;
+                    }
+                    case 4: {
+
+                        String numeroSecreto = "";
+                        for (int i = 0; i < 4; i++) {
+                            int x = r.nextInt((7 - 0) + 1) + 0;
+                            String y = Integer.toString(x);
+                            numeroSecreto += y;
+                        }
+                        for (int i = 0; i < jugadores.size(); i++) {
+                            int intentos = 0;
+                            while (intentos != 8) {
+                                String salida = "";
+                                System.out.println(numeroSecreto);
+                                System.out.println(jugadores.get(i).getUsuario() + " ingrese 4 digitos para encontrar el numero");
+
+                                String adivinar = s.next();
+                                System.out.println(adivinar);
+                                for (int j = 0; j < adivinar.length(); j++) {
+                                    String car = Character.toString(adivinar.charAt(j));
+
+                                    boolean h = numeroSecreto.contains(car);
+                                    if (h == true) {
+                                        int o = numeroSecreto.indexOf(car);
+                                        int p = adivinar.indexOf(car);
+                                        if (o == p) {
+                                            salida += "+";
+                                        } else {
+                                            salida += "-";
+                                        }
+
+                                    } else {
+                                        salida += "x";
+                                    }
+
+                                }
+                                String inicio = "";
+                                String medio = "";
+                                String finall = "";
+                                for (int t = 0; t < salida.length(); t++) {
+                                    String var = Character.toString(salida.charAt(t));
+
+                                    if (null == var) {
+                                        finall = "x";
+                                    } else {
+                                        switch (var) {
+                                            case "+":
+
+                                                inicio += "+";
+                                                break;
+                                            case "-":
+
+                                                medio += "-";
+                                                break;
+                                            default:
+
+                                                finall += "x";
+                                                break;
+                                        }
+                                    }
+
+                                }
+                                salida = inicio + medio + finall;
+                                System.out.println(salida);
+                                if ("++++".equals(salida)) {
+                                    System.out.println("Ganó: " + jugadores.get(i).getUsuario());
+                                    jugadores.get(i).setVictorias(+1);
+                                    ganar = true;
+                                    intentos = 8;
+                                    break;
+                                }
+                                intentos += 1;
+                            }
+                        }
+
+                        break;
+                    }
                 }
             }
         }
